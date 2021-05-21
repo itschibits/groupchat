@@ -66,6 +66,7 @@ class ChatUser {
   /** Handle a joke: sent to only user.
    *
    * */
+  //TODO use this.send, no need for selfWhisper()
 
   async handleJoke() {
     let response = await axios.get("https://icanhazdadjoke.com/",
@@ -91,7 +92,14 @@ class ChatUser {
       text: membersString,
     });
   }
-
+  /** Show users within the chatroom: sent to only user.
+     *
+     * */
+  async handlePm() {
+    let  = [];
+    
+    
+  }
   /** Handle messages from client:
    *
    * @param jsonData {string} raw message data
@@ -109,6 +117,7 @@ class ChatUser {
     else if (msg.type === "get-joke") this.handleJoke();
     else if (msg.type === "members") this.showMembers();
     else if (msg.type === "chat") this.handleChat(msg.text);
+    else if (msg.type === "private-message") this.handlePm(msg.txt);
     else throw new Error(`bad message: ${msg.type}`);
   }
 
